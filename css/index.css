@@ -2,6 +2,7 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -61,7 +62,8 @@ a {
 
 .banner-content {
     position: relative;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 6%;
     padding-bottom: 6%;
     overflow: hidden;
@@ -70,14 +72,27 @@ a {
     max-width: 660px;
 }
 
+.banner-content h1 {
+    margin-bottom: 5px;
+}
+
+.banner-content p {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
 .button {
     color: #fff;
     background-color: #c9302c;
     border-color: #ac2925;
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     padding: 10px 16px;
+    width: 90px;
     font-size: 18px;
     border-radius: 6px;
+    margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container {
