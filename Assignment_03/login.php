@@ -1,6 +1,13 @@
+<?php
+require 'includes/common.php';
+if(isset($_SESSION['email']))
+{
+    header('location: products.php');
+}
+?>
 <!DOCTYPE html>
 <html>
-  <head>
+        <head>
 		<title>Lifestyle Store</title>
 		<meta charset="utf-8">
 		<meta name='viewport' content="width=device-width, initial-scale=1.0">
@@ -15,63 +22,53 @@
 
 	<body>
 
-
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="index.html" class="navbar-brand">Lifestyle Store</a>
-				</div>
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-						<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>					
-					</ul>
-				</div>	
-			</div>
-		</nav>   <!--END OF HEADER-->
-
-		<div class="container">
+                <?php            
+                    include 'includes/header.php';
+                ?>
+		<div class="container container-modi">
 			<div class="row row-style">
 				<div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-6">
+                                    <?php if(!isset($_GET['login_error'])) { ?>
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h4><strong>LOGIN</strong></h4>
 						</div>
+                                    <?php } else { ?>
+                                        <div class="panel panel-warning">
+						<div class="panel-heading">
+							<h5><strong><?php echo $_GET['login_error']."!"; ?></strong></h5>
+						</div>
+                                    <?php } ?>
+                                            
 						<div class="panel-body panel-body-style">
 							<p class="text-warning">
 								<em>Login to make a purchase</em>
 							</p>
-							<form>
-								<div class="form-group">
-									<input type="text" name="email" placeholder="Email" class="form-control">
-								</div>
-								<div class="form-group">
-									<input type="text" name="password" placeholder="Password" class="form-control">
-								</div>
-								<div class="form-group">
-									<input type="submit" class="btn btn-primary" value="Login">
-								</div>
+                                                        <form action="login_submit.php" method="post">
+                                                            <div class="form-group">
+                                                                <input type="email" name="email" placeholder="Email" class="form-control" required="True" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="password" name="password" placeholder="Password" class="form-control" required="True" pattern=".{6,}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="submit" class="btn btn-primary" value="Login">
+                                                            </div>
 							</form>
 
 						</div>
 						<div class="panel-footer panel-footer-style">
-							Don't have an account? <a href="signup.html" class="text-info"><strong>Register</strong></a>
+							Don't have an account? <a href="signup.php" class="text-info"><strong>Register</strong></a>
 						</div>
 					</div>
 				</div>
 			</div>
+                    <div class="push"></div>
 		</div>
 		
 
-		<footer class="navbar navbar-fixed-bottom">
-			<div class="container">
-				<p><center>Copyright &copy; Lifestyle Store. All Rights Reserved | Contact Us: +91 90000 00000.</center></p>
-			</div>
-		</footer>
+		<?php                
+                    include 'includes/footer.php';
+                ?>
 	</body>
 </html>

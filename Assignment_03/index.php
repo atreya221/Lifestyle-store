@@ -1,3 +1,10 @@
+<?php
+require 'includes/common.php';
+if (isset($_SESSION['email'])) 
+{ 
+    header('location: products.php'); 
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,44 +21,30 @@
 	</head>
 
 	<body>
+            <?php
+                include 'includes/header.php';
+            ?>
+            <div id="banner_image">
+		<div id="container">
+                    <div id="banner_content">
+			<h1>We sell lifestyle.</h1>
+                        <p>Flat 40% OFF on premium brands</p>
+                        <a href="products.php" class="btn btn-danger btn-lg active">Shop Now</a>
+                    </div>
+		</div>
+                <div class="push"></div>
+            </div>
+            <?php
+                include 'includes/footer.php';
+            ?>
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+            <script src="/__/firebase/7.17.1/firebase-app.js"></script>
 
+            <!-- TODO: Add SDKs for Firebase products that you want to use
+                https://firebase.google.com/docs/web/setup#available-libraries -->
+            <script src="/__/firebase/7.17.1/firebase-analytics.js"></script>
 
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="index.html" class="navbar-brand">Lifestyle Store</a>
-				</div>
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-						<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>					
-					</ul>
-				</div>	
-			</div>
-		</nav>   <!--END OF HEADER-->
-
-
-		
-		<div id="banner_image">
-			<div id="container">
-				<div id="banner_content">
-					<h1>We sell lifestyle.</h1>
-					<p>Flat 40% OFF on premium brands</p>
-					<a href="products.html" class="btn btn-danger btn-lg active">Shop Now</a>
-				</div>
-			</div>
-		</div>						
-		
-
-		<footer>
-			<div class="container">
-				<p><center>Copyright &copy; Lifestyle Store. All Rights Reserved | Contact Us: +91 90000 00000.</center></p>
-			</div>
-		</footer>
+            <!-- Initialize Firebase -->
+            <script src="/__/firebase/init.js"></script>
 	</body>
 </html>

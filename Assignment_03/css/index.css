@@ -1,8 +1,13 @@
-body {
+html, body {
     width: 100%;
     height: 100%;
     margin: 0;
     font-family: 'Roboto', sans-serif;
+}
+
+.container-modi {
+    min-height: 100%;
+    margin-bottom: -50px;
 }
 
 a {
@@ -43,18 +48,22 @@ a {
 }
 
 footer {
-    position: relative;
+    
     background-color: #101010;
     color: #9d9d9d;
     padding: 10px 0;
-    bottom: 0;
+    height: 50px;
     width: 100%;
+}
+
+footer, .push {
+    height: 50px;
 }
 
 
 
 .row-style {
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .row-style h2 {
@@ -76,6 +85,11 @@ footer {
 
 .thumbnail img {
     height: 165px;
+}
+
+.thumbnail h3 {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .panel a {

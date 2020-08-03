@@ -1,3 +1,10 @@
+<?php
+    require 'includes/common.php';
+    if(!isset($_SESSION['email']))
+    {
+        header('location: index.php');
+    }
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,52 +22,64 @@
 
 	<body>
 
+		<?php include 'includes/header.php'; ?>
 
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="index.html" class="navbar-brand">Lifestyle Store</a>
-				</div>
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-						<li><a href="settings.html"><span class="glyphicon glyphicon-user"></span> Settings</a></li>
-						<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>					
-					</ul>
-				</div>	
-			</div>
-		</nav>   <!--END OF HEADER-->
-
-		<div class="container">
+		<div class="container container-modi">
 			<div class="row row-style">
 				<div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-6">
+                                <?php if(isset($_GET['success_message'])) {
+                                    echo"<div class='panel panel-success'>
+						<div class='panel-heading'>
+							<h4>Success!</h4>
+						</div>
+						<div class='panel-body'>
+							<p>".$_GET['success_message']."</p>
+						</div></div>"; 
+                                    
+                                }?>
+                                
+                                <?php if(isset($_GET['password_error'])) {
+                                    echo"<div class='panel panel-warning'>
+						<div class='panel-heading'>
+							<h4>Error!</h4>
+						</div>
+						<div class='panel-body'>
+							<p>".$_GET['password_error']."</p>
+						</div></div>"; 
+                                    
+                                }?>
+                                    
+                                <?php if(isset($_GET['passwordmatch_error'])) {
+                                    echo"<div class='panel panel-warning'>
+						<div class='panel-heading'>
+							<h4>Error!</h4>
+						</div>
+						<div class='panel-body'>
+							<p>".$_GET['passwordmatch_error']."</p>
+						</div></div>"; 
+                                    
+                                }?>
+                                    <form action="settings_script.php" method="post">
 					<h2>Change Password</h2>
 					<div class="form-group">
-						<input type="text" name="oldpassword" placeholder="Old Password" class="form-control">
+                                            <input type="password" name="oldpassword" placeholder="Old Password" class="form-control" required="True">
 					</div>
 					<div class="form-group">
-						<input type="text" name="newpassword" placeholder="New Password" class="form-control">
+                                            <input type="password" name="newpassword" placeholder="New Password" class="form-control" pattern=".{6,}" required="True">
 					</div>
 					<div class="form-group">
-						<input type="text" name="renewpassword" placeholder="Retype New Password" class="form-control">
+                                            <input type="password" name="renewpassword" placeholder="Retype New Password" class="form-control" pattern=".{6,}" required="True">
 					</div>
 					<div class="form-group">
-						<input type="submit" value="Change" class="btn btn-primary">
+						<input type="submit" value="Change Password" class="btn btn-primary">
 					</div>
+                                    </form>
 				</div>
 			</div>
+                    <div class="push"></div>
 		</div>
 		
 
-		<footer class="navbar navbar-fixed-bottom">
-			<div class="container">
-				<p><center>Copyright &copy; Lifestyle Store. All Rights Reserved | Contact Us: +91 90000 00000.</center></p>
-			</div>
-		</footer>
+		<?php include 'includes/footer.php'; ?>
 	</body>
 </html>

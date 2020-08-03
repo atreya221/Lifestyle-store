@@ -1,3 +1,10 @@
+<?php
+    require 'includes/common.php';
+    if(isset($_SESSION['email']))
+    {
+        header('location : products.php');
+    }
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,59 +23,45 @@
 	<body>
 
 
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="index.html" class="navbar-brand">Lifestyle Store</a>
-				</div>
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-						<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>					
-					</ul>
-				</div>	
-			</div>
-		</nav>   <!--END OF HEADER-->
+		<?php include 'includes/header.php'; ?>
 
-		<div class="container">
+		<div class="container container-modi">
 			<div class="row row-style">
 				<div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-6">
+                                    <form method="post" action="signup_script.php">
 					<h2><strong>SIGN UP</strong></h2>
 					<div class="form-group">
-						<input type="text" name="name" placeholder="Name" class="form-control">
+                                            
+                                            <input type="text" name="name" placeholder="Name" class="form-control" required="True">
 					</div>
 					<div class="form-group">
-						<input type="text" name="email" placeholder="Email" class="form-control">
+                                            <?php if(isset($_GET['email_error'])) { ?><label for="email"><span class="warning" style="background-color: red;color: yellowgreen"><?php echo $_GET['email_error']; ?></span></label><?php } ?>
+                                            <input type="text" name="email" placeholder="Email" class="form-control" required="True" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
 					</div>
 					<div class="form-group">
-						<input type="text" name="passowrd" placeholder="Password" class="form-control">
+                                            <?php if(isset($_GET['password_error'])) { ?><label for="password"><span class="warning" style="background-color: red;color: yellowgreen"><?php echo $_GET['password_error']; ?></span></label><?php } ?>
+                                            <input type="password" name="password" placeholder="Password" class="form-control" required="True" pattern=".{6,}">
 					</div>
 					<div class="form-group">
-						<input type="text" name="contact" placeholder="Contact" class="form-control">
+                                            <?php if(isset($_GET['contact_error'])) { ?><label for="contact"><span class="warning" style="background-color: red;color: yellowgreen"><?php echo $_GET['contact_error']; ?></span></label><?php } ?>
+                                            <input type="tel" name="contact" placeholder="Mobile Number" class="form-control" required="True" pattern="[0-9]{10}">
 					</div>
 					<div class="form-group">
-						<input type="text" name="city" placeholder="City" class="form-control">
+						<input type="text" name="city" placeholder="City" class="form-control" required="True">
 					</div>
 					<div class="form-group">
-						<input type="text" name="address" placeholder="Address" class="form-control">
+						<input type="text" name="address" placeholder="Address" class="form-control" required="True">
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Submit" class="btn btn-primary">
 					</div>
+                                    </form>
 				</div>
 			</div>
+                    <div class="push"></div>
 		</div>
 		
 
-		<footer class="navbar navbar-fixed-bottom">
-			<div class="container">
-				<p><center>Copyright &copy; Lifestyle Store. All Rights Reserved | Contact Us: +91 90000 00000.</center></p>
-			</div>
-		</footer>
+		<?php include 'includes/footer.php'; ?> 
 	</body>
 </html>

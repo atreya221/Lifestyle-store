@@ -1,3 +1,10 @@
+<?php
+require 'includes/common.php';
+if(!isset($_SESSION['email']))
+{
+    header('location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,27 +23,18 @@
 	<body>
 
 
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="index.html" class="navbar-brand">Lifestyle Store</a>
-				</div>
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-						<li><a href="settings.html"><span class="glyphicon glyphicon-user"></span> Settings</a></li>
-						<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>					
-					</ul>
-				</div>	
-			</div>
-		</nav>   <!--END OF HEADER-->
-
-		<div class="container">
+		<?php include 'includes/header.php'; ?>
+                <?php
+                    $user_id = $_SESSION['user_id'];
+                    $id = explode(" ",$_GET['id']);
+                    //print_r($id);
+                    for($counter=0;$counter<count($id);$counter++){
+                        $update_query = "UPDATE users_items ui SET ui.status='Confirmed' WHERE ui.user_id = '$user_id' AND ui.item_id ='$id[$counter]'";
+                        $update_result = mysqli_query($con,$update_query) or die(mysqli_error($con));
+                        //echo $id[$counter]."<br>";
+                    }
+                ?>
+		<div class="container container-modi">
 			<div class="row row-style">
 				<div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-6">
 					<div class="panel panel-success">
@@ -45,18 +43,15 @@
 						</div>
 						<div class="panel-body">
 							<p>Your order is confirmed. Thank you for shopping
-								with us. ​<a href="products.html" class="text-info"><strong>Click here</strong> </a> to purchase any other item.</p>
+								with us. ​<a href="products.php" class="text-info"><strong>Click here</strong> </a> to purchase any other item.</p>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="push"></div>
 		</div>
 		
 
-		<footer class="navbar navbar-fixed-bottom">
-			<div class="container">
-				<p><center>Copyright &copy; Lifestyle Store. All Rights Reserved | Contact Us: +91 90000 00000.</center></p>
-			</div>
-		</footer>
+		<?php include 'includes/footer.php'; ?>
 	</body>
 </html>
